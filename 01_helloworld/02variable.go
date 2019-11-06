@@ -70,15 +70,16 @@ func main(){
 	fff = "hello"  // ok 
 	fmt.Println(fff)  // hello
 
-	// desc()
-
-
 	// 4）允许多个类型的变量在勇一行赋值
 	var am, bn int
 	var ce string 
 	am, bn, ce = 1, 2, "123"  // ok
 
 	fmt.Println(am, bn, ce)
+
+	// 5) 注意： 如果你声明了一个局部变量却没有在相同的代码块中使用它，同样会得到编译错误
+
+	desc()
 
 }
 
@@ -91,12 +92,10 @@ var (
 // asd, cas := 111, 222   // 初始化声明只能在函数内声明
 
 
-// 注意： 如果你声明了一个局部变量却没有在相同的代码块中使用它，同样会得到编译错误
+func desc(){
+	var cc int = 123  // error 声明局部变量但未使用
 
-// func desc(){
-// 	var cc int = 123  // error 声明局部变量但未使用
-
-// }
+}
 
 var (
 	ccc int   // 全局变量未使用  ok
