@@ -58,10 +58,28 @@ func main(){
 	eee, ggg, hh := 1, 2, 3
 	fmt.Println(eee, ggg, hh)
 
+	// 使用 := 赋值操作符  ---> 初始化声明
 	fff := "hello world"  // 等同于 var s struing = "hello world"
 	fmt.Println(fff)
 
-	fmt.Println(a11, "=-=====")   // 0 =-=====
+	fmt.Println(a11, "=-=====")   // 使用全局变量 0 =-=====
+
+	// 已经声明的变量不能初始化声明
+	// fff := "123"  // error 
+	// fff = 123  // error 已经声明为string类型
+	fff = "hello"  // ok 
+	fmt.Println(fff)  // hello
+
+	// desc()
+
+
+	// 4）允许多个类型的变量在勇一行赋值
+	var am, bn int
+	var ce string 
+	am, bn, ce = 1, 2, "123"  // ok
+
+	fmt.Println(am, bn, ce)
+
 }
 
 // 一般用于声明全局变量
@@ -70,4 +88,16 @@ var (
 	b float32
 )
 
-// asd, cas := 111, 222   // 只能在函数内声明
+// asd, cas := 111, 222   // 初始化声明只能在函数内声明
+
+
+// 注意： 如果你声明了一个局部变量却没有在相同的代码块中使用它，同样会得到编译错误
+
+// func desc(){
+// 	var cc int = 123  // error 声明局部变量但未使用
+
+// }
+
+var (
+	ccc int   // 全局变量未使用  ok
+)
