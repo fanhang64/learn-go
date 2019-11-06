@@ -21,6 +21,9 @@ func main(){
 	var v_name3 float32
 	fmt.Println(v_name3)  // 0
 
+	var v_name5 [2]int
+	fmt.Println(v_name5)  // [0 0]
+
 	// 布尔类型 返回false
 	var v_name4 bool
 	fmt.Println(v_name4)  // false
