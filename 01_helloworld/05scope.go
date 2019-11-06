@@ -15,13 +15,13 @@ func main()  {
 	// c := a + b 
 	fmt.Printf("a = %d, b= %d, c= %d\n", a, b, c)
 
-	// 形参也是局部变量
+	// 形参
 	d := sum(a, b)
 	fmt.Println(d,)
 }
 
 
-// 形参
+// 形参也是局部变量
 func sum(a, b int) int {
 	num := a + b
 	return num
