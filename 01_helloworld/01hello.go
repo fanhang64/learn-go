@@ -38,16 +38,10 @@ func main(){
 		// float32 float64 
 		// complex64 32 位实数和虚数
 		//  complex128  64 位实数和虚数
-		var my_float float32 = 1111.111
-		fmt.Println(my_float)
-		var my_complex complex128 = 11111.111
-		fmt.Println(my_complex)
-
-		// byte ===》uint8
-		// rune ===> int32
-		// uint ===> 32位或64位
-		// int  ===> uint
-		// uintptr  无符号整型 用于存放一个指针
+		var myFloat float32 = 1111.111
+		fmt.Println(myFloat)
+		var myComplex complex128 = 11111.111
+		fmt.Println(myComplex)
 
 	//  字符串类型： 字符串是由单个字节连接起来的，默认使用UTF-8编码
 	//  派生类型：
