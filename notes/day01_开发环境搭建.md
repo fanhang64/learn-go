@@ -512,7 +512,7 @@ const (
 
 
 // iota 是go语言中常量计数器, 只能在常量的表达式中使用
-// 在const中 被重置为0
+// 在const中 第一次出现被重置为0
 // const中每新增一行常量声明将使iota计数一次
 const (
 	a1 = iota  // 0 
@@ -577,6 +577,140 @@ func main()  {
 ```
 
 ### 基本数据类型
+
+Go语言中有丰富的数据类型，除了基本的整型、浮点型、布尔型、字符串外，还有数组、切片、结构体、函数、map、通道（channel）等
+
+#### 整型
+
+整型分为以下两个大类： 
+
+按长度分为：int8、int16、int32、int64 
+
+对应的无符号整型：uint8、uint16、uint32、uint64
+
+**注意：** 
+
+1. `uint8`就是我们熟知的`byte`型，`int16`对应C语言中的`short`型，`int64`对应C语言中的`long`型。
+2. 在使用`int`和 `uint`类型时，不能假定它是32位或64位的整型，而是考虑`int`和`uint`可能在不同平台上的差异。
+3. 获取对象的长度的内建`len()`函数返回的长度可以根据不同平台的字节长度进行变化。
+
+**实例：**
+
+```go
+package main
+
+import "fmt"
+
+// 整型
+func main()  {
+	var a = 10  // 类型推导
+
+	fmt.Printf("%d\n", a)
+
+	// 八进制
+	b := 077  
+	fmt.Printf("%d %o\n", b, b)
+
+	// 十六进制数
+	c := 0xff
+	fmt.Printf("%d, %x\n", c, c)
+	
+	// 查看变量的类型
+	fmt.Printf("%T\n", c)  // 默认int类型
+
+	// 声明一个int8类型的变量
+	d := int8(9)
+	fmt.Printf("%T\n", d)  // 默认int8类型
+
+}
+```
+
+#### 浮点型
+
+Go语言支持两种浮点型数类型：`float32`和`float64`。
+
+`float32`最大值的常量定义：`math.MaxFloat32`。 
+
+`float64` 最大值的常量定义：`math.MaxFloat64`。
+
+**注意：**
+
+- 两种类型不能相互赋值
+
+**实例：**
+
+```go
+package main
+
+import "fmt"
+// import "math"
+
+func main()  {
+	// math.MaxFloat32  // 32位浮点数最大值
+	// math.MaxFloat64  // 64位浮点数最大值
+
+	f1 := 1.2345
+	fmt.Printf("%T\n", f1)  // 默认go语言中浮点数是float64
+
+	f2 := float32(1.23455)
+	fmt.Printf("%T\n", f2)  // 显示声明float32
+	
+	// f1 = f2  // error 不能直接把float64传给float32
+}
+```
+
+#### 复数
+
+两种类型：`complex64`和`complex128`
+
+```go
+var c1 complex64
+c1 = 1 + 2i
+var c2 complex128
+c2 = 2 + 3i
+
+fmt.Println(c1)
+fmt.Println(c2)
+```
+
+**注意：**
+
+- 复数有实部和虚部，complex64的实部和虚部为32位，complex128的实部和虚部为64位。
+
+#### 布尔类型
+
+Go语言中以`bool`类型进行声明布尔型数据，布尔型数据只有`true（真）`和`false（假）`两个值。
+
+**注意：**
+
+1. 布尔类型默认值为false
+2. 不允许将整型强制转换为bool类型
+3. bool类型无法进行数值运算，也无法与其他类型进行转换
+
+**实例：**
+
+```go
+package main
+
+import "fmt"
+
+func main(){
+	b1 := true
+
+	var b2 bool  // 默认false
+
+	fmt.Println(b1)
+	fmt.Printf("%T value: %v", b2, b2)  // %v 打印变量的值 无论任何类型
+
+	b3 := 10  
+	
+	// b4 := bool(b3) // error 不能将整型转为布尔
+
+	// b5 := b2 + b3  // error 不能进行数值运算
+	
+	fmt.Println(b3)
+}
+```
 
 
 
