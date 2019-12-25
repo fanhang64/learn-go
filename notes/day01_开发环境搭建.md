@@ -712,5 +712,227 @@ func main(){
 }
 ```
 
+**fmt包总结**
+
+**实例：**
+
+```go
+package main
+
+import "fmt"
+
+func main()  {
+	var n = 100
+
+	// fmt包总结
+	fmt.Printf("%T\n", n)  // 查看类型
+	fmt.Printf("%v\n", n)  // 打印变量的值
+	fmt.Printf("%b\n", n)   
+	fmt.Printf("%o\n", n)
+	fmt.Printf("%d\n", n)
+	fmt.Printf("%x\n", n)
+
+	// 字符串
+	var s = "hello"
+
+	fmt.Printf("%s\n", s)  // hello
+	fmt.Printf("%v\n", s)  // hello
+	fmt.Printf("%#v\n", s)  // "hello"  打印字符串
+}
+```
+
+
+
+#### 字符串
+
+在Go语言中使用`""`双引号包裹，内部实现使用`UTF8`编码。
+
+使用单引号`''`包裹的是一个字符。
+
+**例如：** 
+
+```go
+s1 := "hello"
+s2 := "你好"
+
+// 使用【反引号】定义多行字符串
+s3 = `
+定义多行字符串。。。。。内容
+`
+
+// 字符串拼接
+ss := "123" +
+    "asdasdasd" +
+    "hello world"
+
+fmt.Println(ss)
+```
+
+**常用函数**
+
+| 函数                                                         | 功能                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| len(str)                                                     | 判断字符串占用字节长度。一个字母占用1个字节，汉字3个字节。返回int |
+| strings.Sprintf(”格式“, 变量名)                              | 拼接字符串返回string类型。                                   |
+| strings.Split("字符串", "使用分割的子串")                    | 根据子串将字符串进行分割。                                   |
+| strings.Contains(字符串, 子串)                               | 判断字符串是否包含子串，返回bool类型                         |
+| strings.HasPrefix(字符串, 子串)  strings.HasSuffix(字符串, 子串) | 判断字符串是否是以【子串】作为前缀或后缀。返回bool           |
+| strings.Index(字符串, 子串)  strings.LastIndex()             | 返回第一次或最后一次出现子串的下标，下标从0开始，返回int     |
+| strings.Join(a [] strings,  "拼接子字符串")                  | 使用子串拼接字符串数组                                       |
+
+**实例：**
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main()  {
+
+	// 字符串
+
+	path := "\"\\home\\fanzone\\Code\\go\\src\\learn-go\\day01\\08string\\main.go\""
+
+	fmt.Println(path)  // 打印带双引号路径
+
+
+	// 定义多行的字符串
+	s1 := `
+	hello world
+abcdef13
+`
+	fmt.Println(s1)
+
+
+	ssa := "123" +
+		"asdasdasd" +
+		"hello world"
+
+	fmt.Println(ssa)  // ok  123asdasdasdhello world
+
+	// 字符串相关操作
+	s3 := "hello world"
+	fmt.Println(len(s3))
+
+	// 字符串的拼接
+	name := "dream"
+	world := "dsb"
+
+	// 法一:
+	fmt.Println(name + world)
+
+	// 法二：
+	var ss string
+	ss = fmt.Sprintf("%s%s", name, world)
+	fmt.Println(ss)
+
+	// 字符串分割
+	path = "fanzone/code/abc/def"
+	ret := strings.Split(path, "/")
+	fmt.Println(ret)  // [fanzone code abc def]
+
+	// 包含
+	fmt.Println(strings.Contains(path, "code"))  // true
+	fmt.Println(strings.Contains(path, "code1"))  // false
+
+	// 前缀 后缀
+
+	fmt.Println(strings.HasPrefix(path, "/"))  // true
+	fmt.Println(strings.HasSuffix(path, "def"))  // true
+
+	// 子串出现的位置下标，下标从0开始
+	s4 := "abcdecfg"
+
+	fmt.Println(strings.Index(s4, "c"))  // 2 查找第一次出现的位置
+	fmt.Println(strings.LastIndex(s4, "c"))  // 5  最后一次出现的位置
+	fmt.Println(strings.Index(s4, "a"))  // 0
+	fmt.Println(strings.Index(s4, "ABC"))  // 找不到返回-1
+
+	// join操作 拼接操作
+
+	fmt.Println(ret)  // [ fanzone code abc def]
+
+	// 使用+拼接
+	fmt.Println(strings.Join(ret, "+"))  //  fanzone+code+abc+def
+}
+```
+
+###### byte和rune类型
+
+字符串由每一个字符组成，可以通过遍历或者索引下标的方式获取每个元素。
+
+ 字符用单引号`''`包裹，默认类型为`rune`类型，如果要定义`byte`类型变量需要手动定义。
+
+例如：
+
+```go
+c1 := "哈"
+c2 := '哈'  // 默认rune类型 也是(int32) 类型
+fmt.Printf("c1: %T, c2: %T\n", c1, c2)  // c1: string, c2: int32  
+
+c3 := "H"
+c4 := 'H'  // 默认是rune类型，也是int32
+c5 := byte('H')  // 强制转换为byte类型，也是uint8类型
+fmt.Printf("c3: %T, c4:%T, c5:%T\n", c3, c4, c5)  // c3: string, c4:int32
+```
+
+**注意：**
+
+1. `byte`类型又叫`uint8`类型，代表`ascii`码的一个字符。
+2. `rune`类型，代表一个`utf-8`字符，当需要处理中文，日文或其他字符时，需要使用`rune`类型，该类型实际是int32。
+
+**实例：**
+
+```go
+// 字符串的遍历
+func main() {
+	s := "hello世界"
+	for i := 0; i < len(s); i++ {  // 按照byte遍历字符串
+		fmt.Printf("%v(%c) ", s[i], s[i])   // 打印字符, 可以打印出,中文出现乱码
+	}
+	fmt.Println()
+
+	for _, r := range s {         // 按照rune类型遍历字符串
+		fmt.Printf("%v(%c) ", r, r)  // ok
+	}
+	fmt.Println()
+}
+
+// 字符串的修改
+s2 := "哈哈哒"  // 表示 '哈' '哈' '哒' 三个字符
+// s2[0] = "吧"  // error 字符串不能修改，需要强制转换为切片
+
+s3 := []rune(s2)  // 将s2强制转为rune切片
+
+// s3[0] = "把"  // error 
+s3[0] = '把'  // ok [哈 哈 哒] s[0]= '' 应该是字符
+fmt.Println(string(s3))  // 将切片转为字符串
+
+// 类型转换
+// 注意： bool不能和其他类型转换
+
+// 整数转浮点数
+m := 10
+var f float64
+f = float64(m)
+fmt.Printf("%T, %f\n", f, f)  // float64, 10.000000
+
+// 浮点数转整数  
+// 小数部分被丢弃
+var v1 float32 = 0.999999
+fmt.Println(int(v1))  // 0
+v1 = -0.999999
+fmt.Println(int(v1))  // 0
+```
+
+
+
+
+
+
+
 
 
