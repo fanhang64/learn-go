@@ -55,8 +55,8 @@ abcdef13
 
 	// 前缀 后缀
 
-	fmt.Println(strings.HasPrefix(path, "/"))  // true
 	fmt.Println(strings.HasSuffix(path, "def"))  // true
+	fmt.Println(strings.HasPrefix(path, "/"))  // true
 
 	// 子串出现的位置下标，下标从0开始
 	s4 := "abcdecfg"

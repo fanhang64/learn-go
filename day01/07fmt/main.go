@@ -18,5 +18,5 @@ func main()  {
 
 	fmt.Printf("%s\n", s)  // hello
 	fmt.Printf("%v\n", s)  // hello
-	fmt.Printf("%#v\n", s)  // "hello"  打印字符串
+	fmt.Printf("%#v\n", s)  // "hello"  打印字符串带引号
 }

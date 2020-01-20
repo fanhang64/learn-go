@@ -775,10 +775,11 @@ fmt.Println(ss)
 | len(str)                                                     | 判断字符串占用字节长度。一个字母占用1个字节，汉字3个字节。返回int |
 | strings.Sprintf(”格式“, 变量名)                              | 拼接字符串返回string类型。                                   |
 | strings.Split("字符串", "使用分割的子串")                    | 根据子串将字符串进行分割。                                   |
-| strings.Contains(字符串, 子串)                               | 判断字符串是否包含子串，返回bool类型                         |
+| strings.Contains(字符串, 子串)                               | 判断字符串是否包含子串，返回bool类型，如果 substr 为空，则返回 true |
 | strings.HasPrefix(字符串, 子串)  strings.HasSuffix(字符串, 子串) | 判断字符串是否是以【子串】作为前缀或后缀。返回bool           |
 | strings.Index(字符串, 子串)  strings.LastIndex()             | 返回第一次或最后一次出现子串的下标，下标从0开始，返回int     |
 | strings.Join(a [] strings,  "拼接子字符串")                  | 使用子串拼接字符串数组                                       |
+| strings.ContainsRune(s string, r rune) bool                  | 判断字符串s中是否包含字符r                                   |
 
 **实例：**
 
