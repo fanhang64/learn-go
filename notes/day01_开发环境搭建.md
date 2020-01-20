@@ -999,7 +999,9 @@ func main()  {
 		fmt.Println("年龄小于18")
 	}
 	// fmt.Println(ageNow)  // error undefined
-	
+    if 1 {  // error 条件必须为bool类型
+        
+    }
 }
 ```
 
@@ -1083,7 +1085,10 @@ func main() {
 	// }
 	
 	// for range循环
-
+	for i := range "helloworld"{
+		fmt.Println(i)  // 索引从0开始
+	}
+   
 	s := "hello世界"
 	for i,v := range s{  // i索引 v字符
 		fmt.Println(i, v)
