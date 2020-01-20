@@ -929,11 +929,167 @@ v1 = -0.999999
 fmt.Println(int(v1))  // 0
 ```
 
+### 流程控制
+
+#### `if`条件判断:
+
+go语言固定与`if`匹配的左括号必须与`if和表达式`放在一行，`{`放在其他位置会出发编译错误。同理，`else`，`else if`也要和`{`放在一行。
+
+格式：
+
+```go
+if 表达式1 {
+    分支1
+} else if 表达式2 {
+    分支2
+} else{
+    分支3
+}
+```
+
+**if条件判断特殊用法**
+
+实例：
+
+```go
+if age := 18; age > 18{
+    fmt.Println("大于18了")
+}else{
+    fmt.Println("小于18")
+}
+```
+
+**实例：**
+
+```go
+package main
+
+import "fmt"
+
+func main()  {
+	age := 19
+
+	// 基本格式
+	if age > 18 {
+		fmt.Println("大于18碎了")
+	}else{
+		fmt.Println("小于18岁")
+	}
+
+	// if age > 1  // error 
+	// {
+
+	// }
+
+	age = 65
+	// 多个判断条件
+	if age > 35{
+		fmt.Println("年龄大于35")
+	}else if age > 18 {
+		fmt.Println("大于18, 小于35")
+	}else{
+		fmt.Println("小于18")
+	}
+
+	// if 特殊写法
+	// ageNow作用域此时只在if条件判断语句中
+	if ageNow:=20; ageNow > 18{
+		fmt.Println("年龄大于18")
+	}else{
+		fmt.Println("年龄小于18")
+	}
+	// fmt.Println(ageNow)  // error undefined
+	
+}
+```
 
 
 
+#### for循环
+
+**格式：**
+
+```go
+for 初始语句;条件表达式;结束语句{
+    循环体语句
+}
+```
+**注意：**
+
+- `for`初始语句可以被忽略，但是初始语句后的分号必须要写
+- `for`循环的初始语句和结束语句都可以省略
+- `for`循环可以通过`break`、`goto`、`return`、`panic`语句强制退出循环。
 
 
 
+#### for无限循环
+
+```go
+for{
+    循环体语句
+}
+```
+
+#### for range循环
+
+Go语言中可以使用`for range`遍历数组、切片、字符串、map 及通道（channel）。
+
+ 通过`for range`遍历的返回值有以下规律：
+
+1. 数组、切片、字符串返回索引和值。
+2. map返回键和值。
+3. 通道（channel）只返回通道内的值。
+
+
+
+**实例：**
+
+```go
+package main
+
+import "fmt"
+
+
+func main() {
+	// 基本格式
+	// 
+	for i:= 0; i < 10; i++{
+		fmt.Println(i)
+	}
+	// fmt.Println(i)  // error 找不到i
+
+	// 变种1： 初始语句可以省略(在for循环外定义)
+	var j = 4
+	for ; j < 10; j++{
+		fmt.Println(j)
+	}
+	fmt.Println(j)  // 10
+	// 变种2： 结束语句也可省略
+	var x = 5
+	for ; x < 10; {
+		fmt.Println(x)
+		x++
+	}
+	// 同变种2, 两个分号忽略了
+	x = 5
+	for x < 10{
+		fmt.Println(x)
+		x++
+	}
+
+	// 无限循环
+	// for {
+	// 	fmt.Println("1")
+	// }
+	
+	// for range循环
+
+	s := "hello世界"
+	for i,v := range s{  // i索引 v字符
+		fmt.Println(i, v)
+		fmt.Printf("%v(%c)\n", v, v)  
+	}
+}
+```
 
 
